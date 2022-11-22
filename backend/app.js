@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose= require("mongoose");
 
 const stuffRoutes = require('./routes/stuff');
-
+const authRoutes = require('./routes/user');
 const app = express();
 
 const dotenv = require("dotenv");
@@ -33,8 +33,9 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
   });
+  
 app.use(bodyParser.json());
 app.use('/api/stuff', stuffRoutes )
-
+app.use('/api/auth', authRoutes )
 
 module.exports = app;
